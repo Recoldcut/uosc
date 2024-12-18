@@ -1493,8 +1493,13 @@ function Menu:render()
 				menu.ass_safe_title = ass_escape(menu.title)
 			end
 
+			-- Background
+			ass:rect(ax, rect.ay, bx, rect.by, {
+				color = serialize_rgba('000000').color,
+				opacity = 0.3
+			})
 			-- Bottom border
-			ass:rect(ax, rect.by - self.separator_size, bx, rect.by, {color = fg, opacity = menu_opacity * 0.2})
+			-- ass:rect(ax, rect.by - self.separator_size, bx, rect.by, {color = fg, opacity = menu_opacity * 0.2})
 
 			-- Do nothing when user clicks title
 			if is_current then
@@ -1564,7 +1569,7 @@ function Menu:render()
 				})
 			else
 				ass:txt(rect.cx, rect.cy, 5, menu.ass_safe_title, {
-					size = self.font_size,
+					size = self.font_size * 1.2,
 					bold = true,
 					color = bgt,
 					wrap = 2,

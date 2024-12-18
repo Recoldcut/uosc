@@ -158,7 +158,7 @@ function VolumeSlider:render()
 
 	-- Current volume value
 	local volume_string = tostring(round(state.volume * 10) / 10)
-	local font_size = round(((width * 0.6) - (#volume_string * (width / 20))) * options.font_scale)
+	local font_size = round(((width * 0.8) - (#volume_string * (width / 20))) * options.font_scale)
 	if volume_y < self.by - self.spacing then
 		ass:txt(self.ax + (width / 2), self.by - self.spacing, 2, volume_string, {
 			size = font_size,
@@ -228,12 +228,12 @@ function Volume:update_dimensions()
 	local max_height = available_height * 0.8
 	local height = round(math.min(self.size * 8, max_height))
 	self.enabled = height > self.size * 2 -- don't render if too small
-	local margin = (self.size / 2) + Elements:v('window_border', 'size', 0)
+	local margin = (self.size) + Elements:v('window_border', 'size', 0)
 	self.ax = round(options.volume == 'left' and margin or display.width - margin - self.size)
 	self.ay = min_y + round((available_height - height) / 2)
 	self.bx = round(self.ax + self.size)
 	self.by = round(self.ay + height)
-	self.mute_ay = self.by - self.size
+	self.mute_ay = self.by - self.size - 38
 	self.slider.enabled = self.enabled
 	self.slider:set_coordinates(self.ax, self.ay, self.bx, self.mute_ay)
 end
@@ -260,14 +260,14 @@ function Volume:render()
 	local ass = assdraw.ass_new()
 	local width_half = (mute_rect.bx - mute_rect.ax) / 2
 	local height_half = (mute_rect.by - mute_rect.ay) / 2
-	local icon_size = math.min(width_half, height_half) * 1.5
+	local icon_size = math.min(width_half, height_half) * 2
 	local icon_name, horizontal_shift = 'volume_up', 0
 	if state.mute then
 		icon_name = 'volume_off'
 	elseif state.volume <= 0 then
 		icon_name, horizontal_shift = 'volume_mute', height_half * 0.25
 	elseif state.volume <= 60 then
-		icon_name, horizontal_shift = 'volume_down', height_half * 0.125
+		icon_name, horizontal_shift = 'volume_down', height_half * 0.09
 	end
 	local underlay_opacity = {main = visibility * 0.3, border = visibility}
 	ass:icon(mute_rect.ax + width_half, mute_rect.ay + height_half, icon_size, 'volume_up',

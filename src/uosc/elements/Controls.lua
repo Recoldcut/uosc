@@ -37,7 +37,7 @@ function Controls:init_options()
 	-- Serialize control elements
 	local shorthands = {
 		['play-pause'] = 'cycle:pause:pause:no/yes=play_arrow?' .. t('Play/Pause'),
-		menu = 'command:menu:script-binding uosc/menu-blurred?' .. t('Menu'),
+		menu = 'command:settings:script-binding uosc/menu-blurred?' .. t('Menu'),
 		subtitles = 'command:subtitles:script-binding uosc/subtitles#sub>0?' .. t('Subtitles'),
 		audio = 'command:graphic_eq:script-binding uosc/audio#audio>1?' .. t('Audio'),
 		['audio-device'] = 'command:speaker:script-binding uosc/audio-device?' .. t('Audio device'),
@@ -47,9 +47,11 @@ function Controls:init_options()
 		['editions'] = 'command:bookmarks:script-binding uosc/editions#editions>1?' .. t('Editions'),
 		['stream-quality'] = 'command:high_quality:script-binding uosc/stream-quality?' .. t('Stream quality'),
 		['open-file'] = 'command:file_open:script-binding uosc/open-file?' .. t('Open file'),
-		['items'] = 'command:list_alt:script-binding uosc/items?' .. t('Playlist/Files'),
+		['items'] = 'command:format_list_bulleted:script-binding uosc/items?' .. t('Playlist/Files'),
 		prev = 'command:arrow_back_ios:script-binding uosc/prev?' .. t('Previous'),
+		prev_ss = 'command:skip_previous:script-binding uosc/prev?' .. t('Previous'),
 		next = 'command:arrow_forward_ios:script-binding uosc/next?' .. t('Next'),
+		next_ss = 'command:skip_next:script-binding uosc/next?' .. t('Next'),
 		first = 'command:first_page:script-binding uosc/first?' .. t('First'),
 		last = 'command:last_page:script-binding uosc/last?' .. t('Last'),
 		['loop-playlist'] = 'cycle:repeat:loop-playlist:no/inf!?' .. t('Loop playlist'),
@@ -57,6 +59,12 @@ function Controls:init_options()
 		shuffle = 'toggle:shuffle:shuffle?' .. t('Shuffle'),
 		autoload = 'toggle:hdr_auto:autoload@uosc?' .. t('Autoload'),
 		fullscreen = 'cycle:crop_free:fullscreen:no/yes=fullscreen_exit!?' .. t('Fullscreen'),
+		original = 'cycle:crop_landscape:window-scale:1?' .. t('Original Resolution'),
+		['open-file-sh'] = 'command:folder_open:script-binding open-media-files?' .. t('Open file'),
+		['open-subtitle-sh'] = 'command:closed_caption:script-binding open-subtitles?' .. t('Open subtitle'),
+		['open-directory-sh'] = 'command:folder:script-binding open-directory?' .. t('Open directory'),
+		['show-in-directory'] = 'command:drive_file_move:script-binding uosc/show-in-directory?' .. t('Show in Directory'),
+		 
 	}
 
 	-- Parse out disposition/config pairs
